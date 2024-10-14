@@ -1,0 +1,17 @@
+{
+    "name": "backend-video-highlights",
+    "version": "1.0.0",
+    "description": "A backend service for video highlights using Node.js and TypeScript.",
+    "main": "src/functions/highlights.ts",
+    "scripts": {
+      "build": "tsc"
+    },
+    "dependencies": {
+      "@netlify/functions": "^2.8.2", 
+      "typescript": "^5.0.0"
+    },
+    "devDependencies": {
+      "@types/node": "^18.0.0"
+    }
+  }
+  

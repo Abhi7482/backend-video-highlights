@@ -1,0 +1,7 @@
+[build]
+  functions = "src/functions"  # Path to your functions directory
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/highlights"
+  status = 200
