@@ -1,5 +1,6 @@
 import { Handler } from '@netlify/functions';
 
+// Mock data for matches
 const mockData = [
   {
     sessionId: 1,
@@ -7,8 +8,20 @@ const mockData = [
     sport: 'badminton',
     videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4',
     teams: {
-      Sudeep: { score: 21, statistics: { caloriesBurned: 100, shotAccuracy: 90 } },
-      Saket: { score: 19, statistics: { caloriesBurned: 80, shotAccuracy: 85 } },
+      Sudeep: {
+        score: 21,
+        statistics: {
+          caloriesBurned: 100,
+          shotAccuracy: 90,
+        },
+      },
+      Saket: {
+        score: 19,
+        statistics: {
+          caloriesBurned: 80,
+          shotAccuracy: 85,
+        },
+      },
     },
     keyMoments: [
       { time: 30, description: 'Sudeep scores a great point' },
@@ -18,9 +31,27 @@ const mockData = [
   },
 ];
 
+// Handler function for the Netlify function
 const handler: Handler = async (event, context) => {
+  // Set CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': 'https://7482-badminton-highlights-ebcg.vercel.app', // Your frontend URL
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+
+  // Handle preflight requests (OPTIONS)
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers,
+    };
+  }
+
+  // Return mock data with CORS headers
   return {
     statusCode: 200,
+    headers,
     body: JSON.stringify(mockData),
   };
 };
